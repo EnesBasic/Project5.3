@@ -1,11 +1,16 @@
 import CalHeader from '@/components/CalHeader';
+import BinBin from '@/components/bin-bin/BinBin'; // Example component
+import CalFooter from '@/components/CalFooter';
 
 export default function Home() {
   return (
-    <main>
+    <main className="app-container">
       <CalHeader />
-      {/* Add your other components here */}
-      <h1>Your Main Content</h1>
+      <div className="main-content">
+        <BinBin />  {/* Your main calendar/schedule component */}
+        {/* Add other components here */}
+      </div>
+      <CalFooter />
     </main>
   );
 }
