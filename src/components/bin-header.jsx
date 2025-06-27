@@ -1,10 +1,7 @@
 "use client";
 import React from "react";
 
-
-
-export default function Index() {
-  return (function MainComponent({
+function MainComponent({
   weekNumber = 1,
   year = 2025,
   dateRange = "Jan 1 - Jan 5 2025",
@@ -20,6 +17,7 @@ export default function Index() {
   isEditing = false,
   setIsEditing = () => {},
 }) {
+
   const generateWeeksForYear = (inputYear) => {
     const weeks = [];
 
@@ -731,5 +729,3 @@ export default function Index() {
       </div>
     </div>
   );
-});
-}

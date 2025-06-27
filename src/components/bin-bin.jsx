@@ -1,10 +1,7 @@
 "use client";
 import React from "react";
 
-
-
-export default function Index() {
-  return (function MainComponent({
+function MainComponent({
   weekNumber = 1,
   year = new Date().getFullYear(),
   dateRange = "Jan 1 - Jan 7 2025",
@@ -2934,6 +2931,7 @@ export default function Index() {
   );
 }
 
+
 function StoryComponent() {
   const mockWeeks = [
     { weekNumber: 1, year: 2025, dateRange: "Jan 1 - Jan 7 2025" },
@@ -3007,5 +3005,4 @@ function StoryComponent() {
       </div>
     </div>
   );
-});
 }
