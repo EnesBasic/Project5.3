@@ -10,13 +10,8 @@ export default function MainComponent({
   dateRange = "",
   availableWeeks = [],
   initialOperators = [],
-  initialData = [],
-  isLoading = false,
-  error = null
+  initialData = []
 }) {
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div className="text-red-500">{error}</div>;
-
   return (
     <div className="schedule-container">
       <CalHeader 

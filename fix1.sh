@@ -1,13 +1,34 @@
-#!/bin/bash
+cat > src/components/schedule/MainComponent.jsx << 'EOL'
+'use client';
 
-# Fix CalHeader import
-sed -i 's/@\/components\/CalHeader/@\/components\/cal-header/g' src/components/schedule/MainComponent.jsx
+import BinBin from '@/components/bin-bin';
+import CalHeader from '@/components/cal-header';
+import CalFooter from '@/components/cal-footer';
 
-# Fix CalFooter import
-sed -i 's/@\/components\/CalFooter/@\/components\/cal-footer/g' src/components/schedule/MainComponent.jsx
-
-# Verify the files exist
-echo "Checking if component files exist:"
-ls -la src/components/cal-header.jsx src/components/cal-footer.jsx
-
-echo "Imports fixed successfully!"
+export default function MainComponent({
+  weekNumber = 1,
+  year = 2025,
+  dateRange = "",
+  availableWeeks = [],
+  initialOperators = [],
+  initialData = []
+}) {
+  return (
+    <div className="schedule-container">
+      <CalHeader 
+        weekNumber={weekNumber}
+        year={year}
+        dateRange={dateRange}
+        availableWeeks={availableWeeks}
+      />
+      
+      <BinBin
+        operators={initialOperators}
+        scheduleData={initialData}
+      />
+      
+      <CalFooter />
+    </div>
+  );
+}
+EOL
