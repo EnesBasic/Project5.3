@@ -1,9 +1,11 @@
-import CalHeader from "@/components/CalHeader";
+import CalHeader from '@/components/CalHeader';
 
-export default function Page() {
+export default function Home() {
   return (
-    <div>
+    <main>
       <CalHeader />
-    </div>
+      {/* Add your other components here */}
+      <h1>Your Main Content</h1>
+    </main>
   );
 }
