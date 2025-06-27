@@ -1,90 +1,69 @@
 'use client';
-
 import BinBin from '@/components/bin-bin';
 import CalHeader from '@/components/cal-header';
 import CalFooter from '@/components/cal-footer';
 
 export default function MainComponent({
+  // Normal props
   weekNumber = 1,
   year = 2025,
   dateRange = "",
   availableWeeks = [],
   initialOperators = [],
   initialData = [],
+  
+  // State props (MUTUALLY EXCLUSIVE)
   isLoading = false,
   error = null
 }) {
-
-  // Add this at the start of your component
-  if (error && isLoading) {
-  console.error("Conflict: Cannot have both error and loading states");
-  return <div>Configuration error - check your props</div>;
+  // State validation
+  const activeStates = [!!error, isLoading, initialData.length === 0].filter(Boolean).length;
+  if (activeStates > 1) {
+    console.error(`State conflict! ${activeStates} states active simultaneously`);
+    return <div className="error">Configuration error: Multiple states active</div>;
   }
 
-  if (error && initialData.length === 0) {
-    console.warn("Warning: Showing error state instead of empty state");
-  }
+  // State handling
+  if (error) return <ErrorState error={error} {...{weekNumber, year, dateRange}} />;
+  if (isLoading) return <LoadingState {...{weekNumber, year, dateRange}} />;
+  if (initialData.length === 0) return <EmptyState {...{weekNumber, year, dateRange}} />;
 
-  // Handle error state
-  if (error) {
-    return (
-      <div className="error-state p-4 text-red-500">
-        <CalHeader 
-          weekNumber={weekNumber}
-          year={year}
-          dateRange={dateRange}
-        />
-        <div className="error-message">{error}</div>
-        <CalFooter />
-      </div>
-    );
-  }
-
-  // Handle loading state
-  if (isLoading) {
-    return (
-      <div className="loading-state p-4">
-        <CalHeader 
-          weekNumber={weekNumber}
-          year={year}
-          dateRange={dateRange}
-        />
-        <div className="loading-spinner">Loading schedule...</div>
-        <CalFooter />
-      </div>
-    );
-  }
-
-  // Handle empty state
-  if (initialData.length === 0) {
-    return (
-      <div className="empty-state p-4 text-gray-500">
-        <CalHeader 
-          weekNumber={weekNumber}
-          year={year}
-          dateRange={dateRange}
-        />
-        <div className="empty-message">No schedule data available</div>
-        <CalFooter />
-      </div>
-    );
-  }
-
-  // Default/normal state
+  // Normal state
   return (
     <div className="schedule-container">
-      <CalHeader 
-        weekNumber={weekNumber}
-        year={year}
-        dateRange={dateRange}
-        availableWeeks={availableWeeks}
-      />
-      
-      <BinBin
-        operators={initialOperators}
-        scheduleData={initialData}
-      />
-      
+      <CalHeader {...{weekNumber, year, dateRange, availableWeeks}} />
+      <BinBin operators={initialOperators} scheduleData={initialData} />
+      <CalFooter />
+    </div>
+  );
+}
+
+// Sub-components for states
+function ErrorState({ error, ...headerProps }) {
+  return (
+    <div className="error-state">
+      <CalHeader {...headerProps} />
+      <div className="error">{error}</div>
+      <CalFooter />
+    </div>
+  );
+}
+
+function LoadingState(headerProps) {
+  return (
+    <div className="loading-state">
+      <CalHeader {...headerProps} />
+      <div>Loading...</div>
+      <CalFooter />
+    </div>
+  );
+}
+
+function EmptyState(headerProps) {
+  return (
+    <div className="empty-state">
+      <CalHeader {...headerProps} />
+      <div>No data available</div>
       <CalFooter />
     </div>
   );

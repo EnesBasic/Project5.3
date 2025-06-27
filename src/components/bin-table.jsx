@@ -426,10 +426,8 @@ function StoryComponent() {
       />
 
       <h2 className="text-xl font-semibold text-white mb-4">Loading State</h2>
-      <MainComponent isLoading={true} />
 
       <h2 className="text-xl font-semibold text-white mb-4">Error State</h2>
-      <MainComponent error="Failed to load schedule data. Please try again later." />
 
       <h2 className="text-xl font-semibold text-white mb-4">Empty State</h2>
       <MainComponent

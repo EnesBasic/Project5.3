@@ -2986,12 +2986,10 @@ function StoryComponent() {
 
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-white mb-4">Loading State</h2>
-        <MainComponent isLoading={true} />
       </div>
 
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-white mb-4">Error State</h2>
-        <MainComponent error="Failed to load schedule data. Please try again later." />
       </div>
 
       <div className="mb-8">
