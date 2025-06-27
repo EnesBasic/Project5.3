@@ -1,8 +1,8 @@
 'use client';
 
 import BinBin from '@/components/bin-bin';
-import CalHeader from '@/components/CalHeader';
-import CalFooter from '@/components/CalFooter';
+import CalHeader from '@/components/cal-header';
+import CalFooter from '@/components/cal-footer';
 
 export default function MainComponent({
   weekNumber = 1,

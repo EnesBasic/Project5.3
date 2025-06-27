@@ -1,43 +1,13 @@
-cat > src/app/page.jsx << 'EOL'
-'use client';
+#!/bin/bash
 
-import { MainComponent } from '@/components/schedule';
+# Fix CalHeader import
+sed -i 's/@\/components\/CalHeader/@\/components\/cal-header/g' src/components/schedule/MainComponent.jsx
 
-const mockWeeks = [
-  { weekNumber: 1, year: 2025, dateRange: "Jan 1 - Jan 7 2025" },
-  { weekNumber: 2, year: 2025, dateRange: "Jan 8 - Jan 14 2025" }
-];
+# Fix CalFooter import
+sed -i 's/@\/components\/CalFooter/@\/components\/cal-footer/g' src/components/schedule/MainComponent.jsx
 
-const mockOperators = ["Adis", "Munib", "Sanin", "Farik", "Harun", "Almedin", "Enes"];
+# Verify the files exist
+echo "Checking if component files exist:"
+ls -la src/components/cal-header.jsx src/components/cal-footer.jsx
 
-const mockData = [
-  {
-    date: "01.01",
-    day: "P",
-    shifts: [
-      {
-        time: "08.00-16.00",
-        operators: {
-          "M58-J-467": "Adis",
-          "M53-E-929": "Munib"
-        }
-      }
-    ]
-  }
-];
-
-export default function SchedulePage() {
-  return (
-    <main className="container mx-auto p-4">
-      <MainComponent 
-        weekNumber={1}
-        year={2025}
-        dateRange="Jan 1 - Jan 7 2025"
-        availableWeeks={mockWeeks}
-        initialOperators={mockOperators}
-        initialData={mockData}
-      />
-    </main>
-  );
-}
-EOL
+echo "Imports fixed successfully!"
