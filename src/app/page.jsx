@@ -1,34 +1,25 @@
 "use client";
 import React from "react";
+import MainComponent from '@/components/schedule/MainComponent';
 
-function MainComponent({
-  weekNumber = 1,
-  year = new Date().getFullYear(),
-  dateRange = "Jan 1 - Jan 7 2025", 
-  onSačuvaj = () => {},
-  onCancel = () => {},
-  initialData = [],
-  isLoading = false,
-  error = null,
-  availableWeeks = [],
-  onWeekChange = () => {},
-  initialOperators = [],
-  onBack = () => {},
-}) {
-  // Function to generate all weeks of a year
-  const generateWeeksForYear = (year) => {
-    const weeks = [];
-    const firstDayOfYear = new Date(year, 0, 1);
-    // ... week generation logic ...
-    return weeks;
-  };
+// Production data - replace with your actual data
+const productionData = [
+  {
+    date: "01.01",
+    day: "Monday",
+    shifts: [
+      {
+        time: "08:00-16:00",
+        operators: {
+          "Truck-1": "Driver 1",
+          "Truck-2": "Driver 2"
+        }
+      }
+    ]
+  }
+];
 
-  return (
-    <div className="main-component">
-      {/* Your main component UI */}
-    </div>
-  );
-}
+const productionOperators = ["Driver 1", "Driver 2"];
 
 function StoryComponent() {
   const mockWeeks = [
@@ -106,5 +97,19 @@ function StoryComponent() {
 }
 
 export default function Index() {
+  // In production, show only the real schedule
+  if (process.env.NODE_ENV === 'production') {
+    return (
+      <MainComponent
+        weekNumber={1}
+        year={2025}
+        dateRange="Jan 1 - Jan 7 2025"
+        initialData={productionData}
+        initialOperators={productionOperators}
+      />
+    );
+  }
+
+  // In development, show the storybook view
   return <StoryComponent />;
 }

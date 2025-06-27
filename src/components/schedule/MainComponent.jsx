@@ -1,34 +1,34 @@
-"use client";
-import React from "react";
+// src/components/schedule/MainComponent.jsx
+'use client';
 
 export default function MainComponent({
   weekNumber = 1,
-  year = new Date().getFullYear(),
+  year = 2025,
   dateRange = "Jan 1 - Jan 7 2025",
-  onSačuvaj = () => {},
-  onCancel = () => {},
   initialData = [],
-  isLoading = false,
-  error = null,
-  availableWeeks = [],
-  onWeekChange = () => {},
   initialOperators = [],
-  onBack = () => {},
+  isLoading = false,
+  error = null
 }) {
-  const generateWeeksForYear = (year) => {
-    const weeks = [];
-    const firstDayOfYear = new Date(year, 0, 1);
-    // ... week generation logic ...
-    return weeks;
-  };
+  // Production-only rendering (remove story states)
+  if (process.env.NODE_ENV === 'production') {
+    if (error) {
+      return <div className="error-alert">{error}</div>;
+    }
+    
+    return (
+      <div className="production-schedule">
+        {/* Your actual schedule UI components */}
+        <h2>Production Schedule - Week {weekNumber}</h2>
+        {/* Your existing schedule rendering logic */}
+      </div>
+    );
+  }
 
-  if (error) return <div className="error">{error}</div>;
-  if (isLoading) return <div>Loading...</div>;
-  if (initialData.length === 0) return <div>No data available</div>;
-
+  // Development/story view (optional)
   return (
-    <div className="main-component">
-      {/* Production version UI */}
+    <div className="p-4 bg-gray-900 min-h-screen">
+      {/* Keep your story states if needed for development */}
     </div>
   );
 }
