@@ -3,8 +3,8 @@
 import { MainComponent } from '@/components/schedule';
 
 const mockWeeks = [
-  { weekNumber: 1, year: 2025, dateRange: "Jan 1 - Jan 7 2025" },
-  { weekNumber: 2, year: 2025, dateRange: "Jan 8 - Jan 14 2025" }
+  { weekNumber: 1, year: 2025, dateRange: "Jan 1 - Jan 5 2025" },
+  { weekNumber: 2, year: 2025, dateRange: "Jan 6 - Jan 12 2025" }
 ];
 
 const mockOperators = ["Adis", "Munib", "Sanin", "Farik", "Harun", "Almedin", "Enes"];
