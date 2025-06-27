@@ -3007,5 +3007,5 @@ function StoryComponent() {
       </div>
     </div>
   );
-});
+};
 }
