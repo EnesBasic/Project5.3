@@ -14,6 +14,17 @@ export default function MainComponent({
   isLoading = false,
   error = null
 }) {
+
+  // Add this at the start of your component
+  if (error && isLoading) {
+  console.error("Conflict: Cannot have both error and loading states");
+  return <div>Configuration error - check your props</div>;
+  }
+
+  if (error && initialData.length === 0) {
+    console.warn("Warning: Showing error state instead of empty state");
+  }
+
   // Handle error state
   if (error) {
     return (
