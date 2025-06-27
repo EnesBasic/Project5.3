@@ -1,5 +1,3 @@
-import CalHeader from '@/components/CalHeader';
-
-export default function TestPage() {
-  return <CalHeader />;
+export default function Page() {
+  return <h1>Test Page Content</h1>;
 }
