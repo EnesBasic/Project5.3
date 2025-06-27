@@ -31,7 +31,7 @@ export default function SchedulePage() {
       <MainComponent 
         weekNumber={1}
         year={2025}
-        dateRange="Jan 1 - Jan 7 2025"
+        dateRange="Jan 1 - Jan 5 2025"
         availableWeeks={mockWeeks}
         initialOperators={mockOperators}
         initialData={mockData}
