@@ -1,20 +1,41 @@
-// src/app/page.jsx
-'use client'; // Required since you're using hooks
+'use client';
 
-import { MainComponent, StoryComponent } from '@/components/schedule';
+import { MainComponent } from '@/components/schedule';
+
+const mockWeeks = [
+  { weekNumber: 1, year: 2025, dateRange: "Jan 1 - Jan 7 2025" },
+  { weekNumber: 2, year: 2025, dateRange: "Jan 8 - Jan 14 2025" }
+];
+
+const mockOperators = ["Adis", "Munib", "Sanin", "Farik", "Harun", "Almedin", "Enes"];
+
+const mockData = [
+  {
+    date: "01.01",
+    day: "P",
+    shifts: [
+      {
+        time: "08.00-16.00",
+        operators: {
+          "M58-J-467": "Adis",
+          "M53-E-929": "Munib"
+        }
+      }
+    ]
+  }
+];
 
 export default function SchedulePage() {
   return (
-    <main>
-      {/* Use either the main component or story component */}
+    <main className="container mx-auto p-4">
       <MainComponent 
         weekNumber={1}
         year={2025}
-        // ... other props
+        dateRange="Jan 1 - Jan 7 2025"
+        availableWeeks={mockWeeks}
+        initialOperators={mockOperators}
+        initialData={mockData}
       />
-      
-      {/* OR if you want the demo view */}
-      <StoryComponent />
     </main>
   );
 }
