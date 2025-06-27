@@ -1,6 +1,6 @@
 'use client';
 
-import BinBin from '@/components/bin-bin/BinBin';
+import BinBin from '@/components/bin-bin';
 import CalHeader from '@/components/CalHeader';
 import CalFooter from '@/components/CalFooter';
 
