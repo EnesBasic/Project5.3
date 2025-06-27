@@ -1,10 +1,8 @@
 "use client";
 import React from "react";
 
-
-
-export default function Index() {
-  return (function MainComponent({
+// Main Component
+function MainComponent({
   weekNumber = 1,
   year = new Date().getFullYear(),
   dateRange = "Jan 1 - Jan 7 2025",
@@ -2934,6 +2932,8 @@ export default function Index() {
   );
 }
 
+
+// Story Component (showing different states)
 function StoryComponent() {
   const mockWeeks = [
     { weekNumber: 1, year: 2025, dateRange: "Jan 1 - Jan 7 2025" },
@@ -3007,5 +3007,7 @@ function StoryComponent() {
       </div>
     </div>
   );
-};
 }
+
+// Export the StoryComponent (or whichever you want to export)
+export default StoryComponent;

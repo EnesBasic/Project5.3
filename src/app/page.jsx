@@ -1,16 +1,20 @@
-import CalHeader from '@/components/CalHeader';
-import BinBin from '@/components/bin-bin/BinBin'; // Example component
-import CalFooter from '@/components/CalFooter';
+// src/app/page.jsx
+'use client'; // Required since you're using hooks
 
-export default function Home() {
+import { MainComponent, StoryComponent } from '@/components/schedule';
+
+export default function SchedulePage() {
   return (
-    <main className="app-container">
-      <CalHeader />
-      <div className="main-content">
-        <BinBin />  {/* Your main calendar/schedule component */}
-        {/* Add other components here */}
-      </div>
-      <CalFooter />
+    <main>
+      {/* Use either the main component or story component */}
+      <MainComponent 
+        weekNumber={1}
+        year={2025}
+        // ... other props
+      />
+      
+      {/* OR if you want the demo view */}
+      <StoryComponent />
     </main>
   );
 }
