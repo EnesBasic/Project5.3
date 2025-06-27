@@ -1,83 +1,44 @@
 'use client';
+import { MainComponent } from '@/components/schedule';
 
-import BinBin from '@/components/bin-bin';
-import CalHeader from '@/components/cal-header';
-import CalFooter from '@/components/cal-footer';
+// Test Case 1: Normal state
+const normalProps = {
+  weekNumber: 1,
+  year: 2025,
+  dateRange: "Jan 1 - Jan 7 2025",
+  initialOperators: ["Operator1", "Operator2"],
+  initialData: [{date: "01.01", shifts: []}]
+};
 
-export default function MainComponent({
-  // Normal state props
-  weekNumber = 1,
-  year = 2025,
-  dateRange = "",
-  availableWeeks = [],
-  initialOperators = [],
-  initialData = [],
-  
-  // State props (mutually exclusive)
-  isLoading = false,
-  error = null
-}) {
-  // Priority 1: Error state
-  if (error) {
-    return (
-      <div className="error-state p-4 text-red-500">
-        <CalHeader 
-          weekNumber={weekNumber}
-          year={year}
-          dateRange={dateRange}
-        />
-        <div className="error-message">{error}</div>
-        <CalFooter />
-      </div>
-    );
-  }
+// Test Case 2: Loading state
+const loadingProps = {
+  ...normalProps,
+  isLoading: true
+};
 
-  // Priority 2: Loading state
-  if (isLoading) {
-    return (
-      <div className="loading-state p-4">
-        <CalHeader 
-          weekNumber={weekNumber}
-          year={year}
-          dateRange={dateRange}
-        />
-        <div className="loading-spinner">Loading schedule...</div>
-        <CalFooter />
-      </div>
-    );
-  }
+// Test Case 3: Error state
+const errorProps = {
+  ...normalProps,
+  error: "Test error"
+};
 
-  // Priority 3: Empty data state
-  if (initialData.length === 0 || initialOperators.length === 0) {
-    return (
-      <div className="empty-state p-4 text-gray-500">
-        <CalHeader 
-          weekNumber={weekNumber}
-          year={year}
-          dateRange={dateRange}
-        />
-        <div className="empty-message">No schedule data available</div>
-        <CalFooter />
-      </div>
-    );
-  }
-
-  // Default: Normal operational state
+export default function TestPage() {
   return (
-    <div className="schedule-container">
-      <CalHeader 
-        weekNumber={weekNumber}
-        year={year}
-        dateRange={dateRange}
-        availableWeeks={availableWeeks}
-      />
+    <div className="space-y-8 p-4">
+      <div className="border p-4">
+        <h2 className="text-xl mb-2">Normal State</h2>
+        <MainComponent {...normalProps} />
+      </div>
       
-      <BinBin
-        operators={initialOperators}
-        scheduleData={initialData}
-      />
+      <div className="border p-4">
+        <h2 className="text-xl mb-2">Loading State</h2>
+        <MainComponent {...loadingProps} />
+      </div>
       
-      <CalFooter />
+      <div className="border p-4">
+        <h2 className="text-xl mb-2">Error State</h2>
+        <MainComponent {...errorProps} />
+      </div>
     </div>
   );
 }
