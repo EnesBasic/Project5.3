@@ -27,15 +27,13 @@ const mockData = [
 
 export default function SchedulePage() {
   return (
-    <main className="container mx-auto p-4">
-      <MainComponent 
-        weekNumber={1}
-        year={2025}
-        dateRange="Jan 1 - Jan 5 2025"
-        availableWeeks={mockWeeks}
-        initialOperators={mockOperators}
-        initialData={mockData}
-      />
-    </main>
+    <MainComponent
+      weekNumber={1}
+      year={2025}
+      dateRange="Jan 1 - Jan 7 2025"
+      availableWeeks={mockWeeks}
+      initialOperators={mockOperators}
+      initialData={mockData}
+    />
   );
 }

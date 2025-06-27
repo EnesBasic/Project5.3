@@ -10,8 +10,56 @@ export default function MainComponent({
   dateRange = "",
   availableWeeks = [],
   initialOperators = [],
-  initialData = []
+  initialData = [],
+  isLoading = false,
+  error = null
 }) {
+  // Handle error state
+  if (error) {
+    return (
+      <div className="error-state p-4 text-red-500">
+        <CalHeader 
+          weekNumber={weekNumber}
+          year={year}
+          dateRange={dateRange}
+        />
+        <div className="error-message">{error}</div>
+        <CalFooter />
+      </div>
+    );
+  }
+
+  // Handle loading state
+  if (isLoading) {
+    return (
+      <div className="loading-state p-4">
+        <CalHeader 
+          weekNumber={weekNumber}
+          year={year}
+          dateRange={dateRange}
+        />
+        <div className="loading-spinner">Loading schedule...</div>
+        <CalFooter />
+      </div>
+    );
+  }
+
+  // Handle empty state
+  if (initialData.length === 0) {
+    return (
+      <div className="empty-state p-4 text-gray-500">
+        <CalHeader 
+          weekNumber={weekNumber}
+          year={year}
+          dateRange={dateRange}
+        />
+        <div className="empty-message">No schedule data available</div>
+        <CalFooter />
+      </div>
+    );
+  }
+
+  // Default/normal state
   return (
     <div className="schedule-container">
       <CalHeader 
