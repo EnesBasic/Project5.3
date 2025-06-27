@@ -676,7 +676,6 @@ export default function Index() {
   return (<div></div>);
 }
 
-function StoryComponent() {
   return (<div><MainComponent /></div>);
 });
 }

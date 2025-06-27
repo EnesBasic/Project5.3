@@ -160,7 +160,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const [operators, setOperators] = React.useState([
     { id: 1, name: "John Doe", color: "#67e8f9" },
     { id: 2, name: "Jane Smith", color: "#10b981" },

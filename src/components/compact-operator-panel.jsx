@@ -190,7 +190,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const [operators, setOperators] = React.useState([
     "Adis", "Munib", "Sanin", "Farik", "Harun", "Almedin", "Enes", "Jasmin", "Kemal", "Mirza"
   ]);

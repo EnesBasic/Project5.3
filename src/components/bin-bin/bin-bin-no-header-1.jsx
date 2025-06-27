@@ -36,7 +36,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const mockOperators = ["Adis", "Munib", "Sanin", "Farik", "Harun", "Almedin", "Enes"];
   const mockData = [
     {

@@ -383,7 +383,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const [mockData, setMockData] = React.useState([
     {
       id: 1,

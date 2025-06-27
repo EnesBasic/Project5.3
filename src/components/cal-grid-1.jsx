@@ -421,7 +421,6 @@ function CalGrid({
   );
 }
 
-function StoryComponent() {
   const [currentDate, setCurrentDate] = React.useState(new Date());
   const buttonText = "#";
   const dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];

@@ -380,7 +380,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const mockOperators = ["John Doe", "Jane Smith", "Mark Johnson", "Sarah Williams", "Robert Brown"];
   
   const mockData = [

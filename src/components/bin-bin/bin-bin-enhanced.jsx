@@ -442,7 +442,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const [mockData, setMockData] = React.useState([
     {
       date: "01.01",

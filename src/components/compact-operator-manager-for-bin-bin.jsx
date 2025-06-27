@@ -145,7 +145,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const [operators, setOperators] = React.useState([
     "Adnan Hodžić",
     "Emir Selimović",

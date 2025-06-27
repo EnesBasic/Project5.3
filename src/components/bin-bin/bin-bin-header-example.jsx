@@ -188,7 +188,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const [weekNumber, setWeekNumber] = React.useState(1);
   const [year, setYear] = React.useState(new Date().getFullYear());
   const [dateRange, setDateRange] = React.useState("Jan 1 - Jan 7 2025");

@@ -341,7 +341,6 @@ function MainComponent() {
   );
 }
 
-function StoryComponent() {
   return (
     <div className="bg-[#121214]">
       <h2 className="text-white text-xl p-4">

@@ -386,7 +386,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const mockData = [
     {
       date: "01.01",

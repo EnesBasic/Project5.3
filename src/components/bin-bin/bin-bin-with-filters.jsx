@@ -292,7 +292,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const [mockData, setMockData] = React.useState([
     {
       date: "2025-01-15",

@@ -1,34 +1,16 @@
-cat > src/components/schedule/MainComponent.jsx << 'EOL'
-'use client';
+#!/bin/bash
 
-import BinBin from '@/components/bin-bin';
-import CalHeader from '@/components/cal-header';
-import CalFooter from '@/components/cal-footer';
+# 1. Clean up exports
+echo "export { default as MainComponent } from './MainComponent';" > src/components/schedule/index.js
 
-export default function MainComponent({
-  weekNumber = 1,
-  year = 2025,
-  dateRange = "",
-  availableWeeks = [],
-  initialOperators = [],
-  initialData = []
-}) {
-  return (
-    <div className="schedule-container">
-      <CalHeader 
-        weekNumber={weekNumber}
-        year={year}
-        dateRange={dateRange}
-        availableWeeks={availableWeeks}
-      />
-      
-      <BinBin
-        operators={initialOperators}
-        scheduleData={initialData}
-      />
-      
-      <CalFooter />
-    </div>
-  );
-}
-EOL
+# 2. Remove StoryComponent references
+find src/ -type f \( -name "*.js" -o -name "*.jsx" \) -exec sed -i '/StoryComponent/d' {} \;
+
+# 3. Verify page.jsx
+echo "Current page.jsx imports:"
+grep "import" src/app/page.jsx
+
+# 4. Clear Next.js cache
+rm -rf .next
+
+echo "Cleanup complete! Try running 'npm run dev' again."

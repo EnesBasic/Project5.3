@@ -287,7 +287,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const [schedule, setSchedule] = React.useState({
     Monday: {
       Morning: {

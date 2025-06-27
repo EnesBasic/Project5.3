@@ -317,7 +317,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const [mockData, setMockData] = React.useState([
     { id: 1, date: "2025-01-01", shift: "Morning", machine: "M58-J-467", operator: "John Doe" },
     { id: 2, date: "2025-01-01", shift: "Evening", machine: "M53-E-929", operator: "Jane Smith" },

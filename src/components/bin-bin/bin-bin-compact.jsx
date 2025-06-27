@@ -414,7 +414,6 @@ function CompactOperatorDragSection({ operators = [], onDragStart, onRemoveOpera
   );
 }
 
-function StoryComponent() {
   const [mockData, setMockData] = React.useState([
     {
       date: "01.01",

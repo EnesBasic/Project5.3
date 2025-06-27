@@ -325,7 +325,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const [mockScheduleData, setMockScheduleData] = React.useState([
     {
       date: "01.01",

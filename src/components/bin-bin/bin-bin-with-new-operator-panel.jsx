@@ -440,7 +440,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const [scheduleData, setScheduleData] = React.useState([
     {
       date: "01.01",

@@ -304,7 +304,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const [currentWeek, setCurrentWeek] = React.useState({
     weekNumber: 1,
     year: 2025,

@@ -292,7 +292,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const [showSearch, setShowSearch] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);

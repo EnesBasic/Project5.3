@@ -152,7 +152,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const [currentDate, setCurrentDate] = React.useState(new Date());
 
   const categoryColors = {

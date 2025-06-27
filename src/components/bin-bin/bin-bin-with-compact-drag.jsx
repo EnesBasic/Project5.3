@@ -268,7 +268,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const defaultOperators = [
     "Adis",
     "Munib",

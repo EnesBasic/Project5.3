@@ -1,8 +1,10 @@
 "use client";
 import React from "react";
 
-// Main Component
-function MainComponent({
+
+
+export default function Index() {
+  return (function MainComponent({
   weekNumber = 1,
   year = new Date().getFullYear(),
   dateRange = "Jan 1 - Jan 7 2025",
@@ -2932,8 +2934,6 @@ function MainComponent({
   );
 }
 
-
-// Story Component (showing different states)
 function StoryComponent() {
   const mockWeeks = [
     { weekNumber: 1, year: 2025, dateRange: "Jan 1 - Jan 7 2025" },
@@ -2986,10 +2986,12 @@ function StoryComponent() {
 
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-white mb-4">Loading State</h2>
+        <MainComponent isLoading={true} />
       </div>
 
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-white mb-4">Error State</h2>
+        <MainComponent error="Failed to load schedule data. Please try again later." />
       </div>
 
       <div className="mb-8">
@@ -3005,7 +3007,5 @@ function StoryComponent() {
       </div>
     </div>
   );
+});
 }
-
-// Export the StoryComponent (or whichever you want to export)
-export default StoryComponent;

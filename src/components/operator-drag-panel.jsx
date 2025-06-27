@@ -123,7 +123,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   const [operators, setOperators] = React.useState([
     "John Doe",
     "Jane Smith",

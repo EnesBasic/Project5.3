@@ -919,7 +919,6 @@ export default function Index() {
   );
 }
 
-function StoryComponent() {
   return (
     <div>
       <MainComponent />
