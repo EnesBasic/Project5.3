@@ -1,12 +1,7 @@
 "use client";
 import React from "react";
 
-
-
-export default function Index() {
-  return ("use client";
-
-function MainComponent({
+export default function CalHeader({
   currentDate,
   setCurrentDate,
   setShowMonthPicker,
@@ -65,7 +60,6 @@ function MainComponent({
             >
               <i className="fas fa-cog text-xs"></i>
             </button>
-
             {showSettings && (
               <div className="absolute right-0 mt-1 bg-[#1a1a1a] rounded-md shadow-lg py-1 z-10 border border-[#2a2a2a]">
                 <div className="p-2">
@@ -85,168 +79,4 @@ function MainComponent({
       </div>
     </div>
   );
-}
-
-function StoryComponent() {
-  const [currentDate, setCurrentDate] = React.useState(new Date());
-  const [showMonthPicker, setShowMonthPicker] = React.useState(false);
-  const [selectedIcon, setSelectedIcon] = React.useState("table");
-  const [showMiniCalendar, setShowMiniCalendar] = React.useState(false);
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
-  const navigateMonth = (direction) => {
-    const newDate = new Date(currentDate);
-    newDate.setMonth(newDate.getMonth() + direction);
-    setCurrentDate(newDate);
-  };
-
-  const toggleMiniCalendar = () => {
-    setShowMiniCalendar(!showMiniCalendar);
-  };
-
-  const categoryColors = {
-    "odmor-godisnji": "#ff9966",
-    "odmor-bolovanje": "#4a9eff",
-    "odmor-slobodan-dan": "#67e8f9",
-    work: "#10b981",
-    meeting: "#8b5cf6",
-    personal: "#f43f5e",
-    islamic: "#fbbf24",
-  };
-
-  const sampleEvents = {
-    [new Date().toDateString()]: [
-      {
-        id: "1",
-        text: "Team Meeting",
-        category: "meeting",
-        time: "10:00 AM",
-      },
-      {
-        id: "2",
-        text: "Lunch with Client",
-        category: "work",
-        time: "12:30 PM",
-      },
-    ],
-    [new Date(Date.now() + 86400000).toDateString()]: [
-      {
-        id: "3",
-        text: "Annual Leave",
-        category: "odmor-godisnji",
-        isVacationDay: true,
-        isStart: true,
-        date: new Date(Date.now() + 86400000),
-        endDate: new Date(Date.now() + 86400000 * 5),
-      },
-    ],
-  };
-
-  return (
-    <div className="min-h-screen bg-black p-4 font-inter">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-white text-2xl font-semibold mb-6">
-          Calendar Header Component
-        </h1>
-        <div className="bg-[#1D1D1F] rounded-lg p-4 mb-8">
-          <MainComponent
-            currentDate={currentDate}
-            setCurrentDate={setCurrentDate}
-            setShowMonthPicker={setShowMonthPicker}
-            navigateMonth={navigateMonth}
-            monthNames={monthNames}
-            selectedIcon={selectedIcon}
-            setSelectedIcon={setSelectedIcon}
-            toggleMiniCalendar={toggleMiniCalendar}
-            showMiniCalendar={showMiniCalendar}
-            events={sampleEvents}
-            categoryColors={categoryColors}
-          />
-          {showMonthPicker && (
-            <div
-              className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
-              onClick={() => setShowMonthPicker(false)}
-            >
-              <div
-                className="bg-[#1D1D1F] rounded-lg p-4 w-80"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <h3 className="text-white text-lg font-semibold mb-4">
-                  Month Picker (Demo)
-                </h3>
-                <div className="grid grid-cols-3 gap-2">
-                  {monthNames.map((month, index) => (
-                    <button
-                      key={month}
-                      className="bg-[#2A2A2A] hover:bg-[#3A3A3A] text-white py-2 rounded"
-                      onClick={() => {
-                        const newDate = new Date(currentDate);
-                        newDate.setMonth(index);
-                        setCurrentDate(newDate);
-                        setShowMonthPicker(false);
-                      }}
-                    >
-                      {month}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {showMiniCalendar && (
-          <div className="mt-4 mb-8">
-            <div className="bg-[#1a1a1a] rounded-lg p-2 border border-[#2a2a2a]">
-              <MiniCalendars
-                currentDate={currentDate}
-                events={sampleEvents}
-                categoryColors={categoryColors}
-              />
-            </div>
-          </div>
-        )}
-
-        <div className="bg-[#1D1D1F] rounded-lg p-4">
-          <h2 className="text-white text-xl font-semibold mb-4">
-            Component Details
-          </h2>
-          <div className="text-[#86868B] space-y-2">
-            <p>
-              This calendar header component provides navigation controls for a
-              calendar view:
-            </p>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Today button (left) - Quickly jump to current date</li>
-              <li>
-                Month/year display (center) - Shows current month and year with
-                month picker on click
-              </li>
-              <li>
-                Navigation arrows - Move forward and backward through months
-              </li>
-              <li>
-                Settings button (right) - For calendar configuration with option
-                to toggle mini calendars view
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-});
 }

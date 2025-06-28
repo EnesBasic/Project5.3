@@ -1,22 +1,83 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
+export default function CalFooter() {
+  const [showEvents, setShowEvents] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
+  const categoryColors = {
+    "odmor-godisnji": "#ff9966",
+    "odmor-bolovanje": "#4a9eff",
+    "odmor-slobodan-dan": "#67e8f9",
+    work: "#10b981",
+    meeting: "#8b5cf6",
+    personal: "#f43f5e",
+    islamic: "#fbbf24",
+  };
 
-export default function Index() {
-  return ("use client";
+  const sampleEvents = {
+    [new Date().toDateString()]: [
+      { id: "1", text: "Team Meeting", category: "meeting", time: "10:00 AM" },
+      {
+        id: "2",
+        text: "Lunch with Client",
+        category: "work",
+        time: "12:30 PM",
+      },
+    ],
+    [new Date(Date.now() + 86400000).toDateString()]: [
+      {
+        id: "3",
+        text: "Annual Leave",
+        category: "odmor-godisnji",
+        isVacationDay: true,
+        isStart: true,
+        date: new Date(Date.now() + 86400000),
+        endDate: new Date(Date.now() + 86400000 * 5),
+      },
+    ],
+  };
 
+  const [events, setEvents] = useState(sampleEvents);
 
-function MainComponent({
-  showEvents,
-  setShowEvents,
-  loading,
-  fetchEvents,
-  error,
-  events,
-  handleDeleteEvent,
-  categoryColors,
-}) {
+  const fetchEvents = async (forceRefresh = false) => {
+    setLoading(true);
+    setError(null);
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      if (forceRefresh) {
+        const newDate = new Date(Date.now() + 86400000 * 21).toDateString();
+        setEvents((prev) => ({
+          ...prev,
+          [newDate]: [
+            {
+              id: "7",
+              text: "Conference",
+              category: "work",
+              time: "9:00 AM - 5:00 PM",
+            },
+          ],
+        }));
+      }
+    } catch (err) {
+      setError("Failed to load events. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDeleteEvent = (id) => {
+    const updatedEvents = {};
+    Object.entries(events).forEach(([date, eventList]) => {
+      const filteredEvents = eventList.filter((event) => event.id !== id);
+      if (filteredEvents.length > 0) {
+        updatedEvents[date] = filteredEvents;
+      }
+    });
+    setEvents(updatedEvents);
+  };
+
   return (
     <div className="w-full">
       <div className="relative w-full">
@@ -163,178 +224,4 @@ function MainComponent({
       </div>
     </div>
   );
-}
-
-function StoryComponent() {
-  const [showEvents, setShowEvents] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const categoryColors = {
-    "odmor-godisnji": "#ff9966",
-    "odmor-bolovanje": "#4a9eff",
-    "odmor-slobodan-dan": "#67e8f9",
-    work: "#10b981",
-    meeting: "#8b5cf6",
-    personal: "#f43f5e",
-    islamic: "#fbbf24",
-  };
-  const sampleEvents = {
-    [new Date().toDateString()]: [
-      { id: "1", text: "Team Meeting", category: "meeting", time: "10:00 AM" },
-      {
-        id: "2",
-        text: "Lunch with Client",
-        category: "work",
-        time: "12:30 PM",
-      },
-    ],
-    [new Date(Date.now() + 86400000).toDateString()]: [
-      {
-        id: "3",
-        text: "Annual Leave",
-        category: "odmor-godisnji",
-        isVacationDay: true,
-        isStart: true,
-        date: new Date(Date.now() + 86400000),
-        endDate: new Date(Date.now() + 86400000 * 5),
-      },
-    ],
-    [new Date(Date.now() + 86400000 * 7).toDateString()]: [
-      {
-        id: "4",
-        text: "Doctor Appointment",
-        category: "odmor-bolovanje",
-        isVacationDay: true,
-        isStart: true,
-        date: new Date(Date.now() + 86400000 * 7),
-      },
-      { id: "5", text: "Project Deadline", category: "work", time: "5:00 PM" },
-    ],
-    [new Date(Date.now() + 86400000 * 14).toDateString()]: [
-      { id: "6", text: "Ramadan Start", category: "islamic" },
-    ],
-  };
-  const [events, setEvents] = useState(sampleEvents);
-  const fetchEvents = async (forceRefresh = false) => {
-    setLoading(true);
-    setError(null);
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      if (forceRefresh) {
-        const newDate = new Date(Date.now() + 86400000 * 21).toDateString();
-        setEvents((prev) => ({
-          ...prev,
-          [newDate]: [
-            {
-              id: "7",
-              text: "Conference",
-              category: "work",
-              time: "9:00 AM - 5:00 PM",
-            },
-          ],
-        }));
-      }
-    } catch (err) {
-      setError("Failed to load events. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-  const handleDeleteEvent = (id) => {
-    const updatedEvents = {};
-    Object.entries(events).forEach(([date, eventList]) => {
-      const filteredEvents = eventList.filter((event) => event.id !== id);
-      if (filteredEvents.length > 0) {
-        updatedEvents[date] = filteredEvents;
-      }
-    });
-    setEvents(updatedEvents);
-  };
-  return (
-    <div className="min-h-screen bg-black p-4 font-inter">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-white text-2xl font-semibold mb-6">
-          Calendar Footer Component
-        </h1>
-        <div className="bg-[#1D1D1F] rounded-lg p-4 mb-8">
-          <MainComponent
-            showEvents={showEvents}
-            setShowEvents={setShowEvents}
-            loading={loading}
-            fetchEvents={fetchEvents}
-            error={error}
-            events={events}
-            handleDeleteEvent={handleDeleteEvent}
-            categoryColors={categoryColors}
-          />
-        </div>
-        <div className="bg-[#1D1D1F] rounded-lg p-4 mb-8">
-          <h2 className="text-white text-xl font-semibold mb-4">
-            Component Variants
-          </h2>
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-[#67e8f9] text-lg mb-2">Loading State</h3>
-              <MainComponent
-                showEvents={true}
-                setShowEvents={() => {}}
-                loading={true}
-                fetchEvents={() => {}}
-                error={null}
-                events={{}}
-                handleDeleteEvent={() => {}}
-                categoryColors={categoryColors}
-              />
-            </div>
-            <div>
-              <h3 className="text-[#67e8f9] text-lg mb-2">Error State</h3>
-              <MainComponent
-                showEvents={true}
-                setShowEvents={() => {}}
-                loading={false}
-                fetchEvents={() => {}}
-                error="Failed to load events. Please try again."
-                events={{}}
-                handleDeleteEvent={() => {}}
-                categoryColors={categoryColors}
-              />
-            </div>
-            <div>
-              <h3 className="text-[#67e8f9] text-lg mb-2">Empty State</h3>
-              <MainComponent
-                showEvents={true}
-                setShowEvents={() => {}}
-                loading={false}
-                fetchEvents={() => {}}
-                error={null}
-                events={{}}
-                handleDeleteEvent={() => {}}
-                categoryColors={categoryColors}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="bg-[#1D1D1F] rounded-lg p-4">
-          <h2 className="text-white text-xl font-semibold mb-4">
-            Component Details
-          </h2>
-          <div className="text-[#86868B] space-y-2">
-            <p>
-              This calendar footer component provides a dropdown interface to
-              view all events:
-            </p>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Toggle button to show/hide the events panel</li>
-              <li>Events grouped by date and sorted chronologically</li>
-              <li>Color-coded events based on category</li>
-              <li>Special styling for vacation/leave events</li>
-              <li>Delete functionality for user-created events</li>
-              <li>Loading, error, and empty states</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-});
 }

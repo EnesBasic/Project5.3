@@ -1,15 +1,12 @@
 "use client";
 import React from "react";
 
-import "@/styles/globals.css";
-import "@/styles/calendar.css";
-import "@/styles/scrollbar.css";
-import "@/styles/animations.css";
-import "@/styles/tooltip.css";
 import CalHeader from "@/components/cal-header";
 import CalGrid1 from "@/components/cal-grid-1";
 import CalFooter from "@/components/cal-footer";
 import MiniCalendars from "@/components/mini-calendars";
+
+
 
 function MainComponent() {
   const [currentDate, setCurrentDate] = React.useState(new Date());
