@@ -1,10 +1,7 @@
 "use client";
 import React from "react";
 
-
-
-export default function Index() {
-  return (function MainComponent({
+export default function MiniCalendars({
   currentDate = new Date(),
   events = {},
   categoryColors = {
@@ -31,7 +28,6 @@ export default function Index() {
     "November",
     "December",
   ];
-
   const dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   const getWeeksInMonth = (date) => {
@@ -84,7 +80,6 @@ export default function Index() {
   const renderMiniCalendar = (monthOffset) => {
     const calendarDate = new Date(currentDate);
     calendarDate.setMonth(currentDate.getMonth() + monthOffset);
-
     const weeks = getWeeksInMonth(calendarDate);
     const today = new Date();
 
@@ -104,9 +99,9 @@ export default function Index() {
               {day.charAt(0)}
             </div>
           ))}
-
           {weeks.flat().map((dayObj, index) => {
-            const isToday = dayObj.date.toDateString() === today.toDateString();
+            const isToday =
+              dayObj.date.toDateString() === today.toDateString();
             const hasEventForDay = hasEvent(dayObj.date);
             const eventCategory = getEventCategory(dayObj.date);
 
@@ -150,115 +145,4 @@ export default function Index() {
       </div>
     </div>
   );
-}
-
-function StoryComponent() {
-  const [currentDate, setCurrentDate] = React.useState(new Date());
-
-  const categoryColors = {
-    "odmor-godisnji": "#ff9966",
-    "odmor-bolovanje": "#4a9eff",
-    "odmor-slobodan-dan": "#67e8f9",
-    work: "#10b981",
-    meeting: "#8b5cf6",
-    personal: "#f43f5e",
-    islamic: "#fbbf24",
-  };
-
-  const sampleEvents = {
-    [new Date().toDateString()]: [
-      {
-        id: "1",
-        text: "Team Meeting",
-        category: "meeting",
-        time: "10:00 AM",
-      },
-      {
-        id: "2",
-        text: "Lunch with Client",
-        category: "work",
-        time: "12:30 PM",
-      },
-    ],
-    [new Date(Date.now() + 86400000).toDateString()]: [
-      {
-        id: "3",
-        text: "Annual Leave",
-        category: "odmor-godisnji",
-        isVacationDay: true,
-        isStart: true,
-        date: new Date(Date.now() + 86400000),
-        endDate: new Date(Date.now() + 86400000 * 5),
-      },
-    ],
-    [new Date(Date.now() + 86400000 * 7).toDateString()]: [
-      {
-        id: "4",
-        text: "Doctor Appointment",
-        category: "odmor-bolovanje",
-        isVacationDay: true,
-        isStart: true,
-        date: new Date(Date.now() + 86400000 * 7),
-      },
-      {
-        id: "5",
-        text: "Project Deadline",
-        category: "work",
-        time: "5:00 PM",
-      },
-    ],
-    [new Date(Date.now() + 86400000 * 14).toDateString()]: [
-      { id: "6", text: "Ramadan Start", category: "islamic" },
-    ],
-  };
-
-  return (
-    <div className="min-h-screen bg-[#121214] p-4 font-inter">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-white text-2xl font-semibold mb-6">
-          Mini Calendars Component
-        </h1>
-
-        <div className="bg-[#1D1D1F]/80 rounded-lg p-4 mb-8">
-          <MainComponent
-            currentDate={currentDate}
-            events={sampleEvents}
-            categoryColors={categoryColors}
-          />
-        </div>
-
-        <div className="bg-[#1D1D1F]/80 rounded-lg p-4 mb-8">
-          <h2 className="text-white text-xl font-semibold mb-4">
-            With Different Date
-          </h2>
-          <MainComponent
-            currentDate={new Date(2025, 5, 15)}
-            events={sampleEvents}
-            categoryColors={categoryColors}
-          />
-        </div>
-
-        <div className="bg-[#1D1D1F]/80 rounded-lg p-4">
-          <h2 className="text-white text-xl font-semibold mb-4">
-            Component Details
-          </h2>
-          <div className="text-[#86868B] space-y-2">
-            <p>
-              The Mini Calendars component displays two compact calendar views:
-            </p>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Previous month (left) and next month (right)</li>
-              <li>Month and year displayed at the top of each calendar</li>
-              <li>Single-letter day abbreviations for weekdays</li>
-              <li>Weekend days highlighted in gold</li>
-              <li>Current day highlighted in blue</li>
-              <li>Event indicators shown as colored dots</li>
-              <li>Responsive layout that works on various screen sizes</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-});
 }
