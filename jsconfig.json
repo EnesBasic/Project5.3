@@ -1,0 +1,21 @@
+
+{
+    "version": 3,
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "jsx": "react-jsx",
+    "checkJs": true
+  }
+}
